@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction Result | HeartGuardAI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        ❤️ HeartGuardAI
+    </div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/history">History</a>
+        <a href="/admin">Admin</a>
+    </div>
+
+</nav>
+
+
+<div class="result-container">
+
+    <h1>❤️ Prediction Result</h1>
+
+    <div class="result-card">
+
+        <h2>{{ prediction }}</h2>
+
+        <div class="risk-circle">
+
+            <span>{{ risk }}%</span>
+
+            <small>Risk</small>
+
+        </div>
+
+        <p class="result-message">
+            {{ message }}
+        </p>
+
+    </div>
+
+
+    <div class="factors">
+
+        <h2>🧠 Contributing Factors</h2>
+
+        {% for factor in factors %}
+
+        <div class="factor">
+            ✓ {{ factor }}
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <a href="/">
+        <button class="primary-btn">
+            ← New Prediction
+        </button>
+    </a>
+
+
+    <p class="medical-warning">
+
+        ⚠️ <strong>Medical Disclaimer:</strong>
+
+        HeartGuardAI is an educational machine-learning
+        project. This prediction is not a medical diagnosis
+        and should not replace advice from a qualified
+        healthcare professional.
+
+    </p>
+
+</div>
+
+</body>
+</html>

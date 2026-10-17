@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeartGuardAI Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            ❤️ HeartGuardAI <span>Admin</span>
+        </div>
+
+        <nav class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('history') }}">History</a>
+            <a href="{{ url_for('admin') }}" class="active">Admin</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+    </header>
+
+
+    <!-- ADMIN DASHBOARD CONTAINER -->
+    <main class="dashboard-container">
+
+        <div class="page-title">
+            <h1>🔐 HeartGuardAI Admin Dashboard</h1>
+            <p>System overview, machine learning telemetry, and patient prediction audit logs.</p>
+        </div>
+
+        <!-- STATISTICS CARDS -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>Total Predictions</h3>
+                <p class="stat-number">{{ total_predictions }}</p>
+            </div>
+
+            <div class="stat-card high-risk">
+                <h3>High Risk Predictions</h3>
+                <p class="stat-number">{{ high_risk }}</p>
+            </div>
+
+            <div class="stat-card low-risk">
+                <h3>Low Risk Predictions</h3>
+                <p class="stat-number">{{ low_risk }}</p>
+            </div>
+        </div>
+
+
+        <!-- BEST MODEL SECTION -->
+        <section class="best-model">
+            <div class="best-badge">🏆 Best Performing Model</div>
+            <h2>{{ best_model }}</h2>
+            <p>Model Benchmark Accuracy: <strong>{{ best_accuracy }}%</strong></p>
+        </section>
+
+
+        <!-- ML MODEL ACCURACY COMPARISON -->
+        <section class="model-section">
+            <h2>🤖 ML Model Accuracy Comparison</h2>
+
+            <div class="model-grid">
+                {% for name, accuracy in models.items() %}
+                <div class="model-card">
+                    <div class="model-card-header">
+                        <h3>{{ name }}</h3>
+                        <div class="accuracy">{{ accuracy }}%</div>
+                    </div>
+
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: {{ accuracy }}%;"></div>
+                    </div>
+
+                    <div class="model-status">
+                        {% if loaded_status and loaded_status.get(name) %}
+                        <span class="status-online">✅ Model Loaded in Memory</span>
+                        {% else %}
+                        <span class="status-online">✅ Model Ready</span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+
+        <!-- RECENT PREDICTION HISTORY -->
+        <section class="section-container">
+            <h2>📋 Recent Prediction History</h2>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Date</th>
+                            <th>Age</th>
+                            <th>Risk Score</th>
+                            <th>Prediction</th>
+                            <th>Model</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in predictions %}
+                        <tr>
+                            <td>#{{ p["id"] }}</td>
+                            <td>{{ p["created_at"] }}</td>
+                            <td>{{ p["age"] }} yrs</td>
+                            <td><strong>{{ p["risk"] }}%</strong></td>
+                            <td>
+                                {% if p["prediction"] == 1 %}
+                                <span class="risk-badge high">❤️ High Risk</span>
+                                {% else %}
+                                <span class="risk-badge low">✅ Low Risk</span>
+                                {% endif %}
+                            </td>
+                            <td><span class="model-tag">{{ p["model"] }}</span></td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="6" class="no-records">
+                                No prediction history available.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>

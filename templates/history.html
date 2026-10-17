@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction History | HeartGuardAI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        ❤️ HeartGuardAI
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/history">History</a>
+        <a href="/admin">Admin</a>
+
+    </div>
+
+</nav>
+
+
+<div class="history-container">
+
+    <h1>📋 Prediction History</h1>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Date</th>
+                <th>Age</th>
+                <th>Sex</th>
+                <th>Prediction</th>
+                <th>Risk</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for record in records %}
+
+            <tr>
+
+                <td>{{ record[1] }}</td>
+
+                <td>{{ record[2] }}</td>
+
+                <td>
+                    {% if record[3] == 1 %}
+                    Male
+                    {% else %}
+                    Female
+                    {% endif %}
+                </td>
+
+                <td>{{ record[4] }}</td>
+
+                <td>{{ record[5] }}%</td>
+
+            </tr>
+
+            {% else %}
+
+            <tr>
+
+                <td colspan="5">
+                    No prediction history available.
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

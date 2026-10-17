@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HeartGuardAI - Heart Disease Risk Prediction</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+    <div class="logo">
+        ❤️ HeartGuardAI
+    </div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/history">History</a>
+        <a href="/admin">Admin</a>
+    </div>
+
+</nav>
+
+
+<!-- HERO SECTION -->
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-text">
+
+            <h1>
+                AI-Powered
+                <span>Heart Disease</span>
+                Risk Prediction
+            </h1>
+
+            <p>
+                HeartGuardAI uses machine learning algorithms
+                to analyze patient health information and
+                estimate the risk of heart disease.
+            </p>
+
+            <a href="#prediction" class="primary-btn">
+                ❤️ Start Prediction
+            </a>
+
+        </div>
+
+        <div class="heart-card">
+
+            <div class="heart-icon">
+                ❤️
+            </div>
+
+            <h2>HeartGuardAI</h2>
+
+            <p>
+                Smart Healthcare<br>
+                Risk Analysis
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+<section class="features">
+
+    <h2>Why HeartGuardAI?</h2>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+
+            <div class="feature-icon">🤖</div>
+
+            <h3>5 ML Algorithms</h3>
+
+            <p>
+                Logistic Regression, Decision Tree,
+                KNN, SVM and Random Forest.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">📊</div>
+
+            <h3>Risk Analysis</h3>
+
+            <p>
+                Get a model-based prediction
+                with risk probability.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">📋</div>
+
+            <h3>Prediction History</h3>
+
+            <p>
+                Store and review previous
+                patient predictions.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">🧠</div>
+
+            <h3>Explainable Results</h3>
+
+            <p>
+                Understand which health factors
+                contributed to the prediction.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PREDICTION SECTION -->
+<section id="prediction" class="prediction-section">
+
+    <h2>❤️ Patient Heart Risk Prediction</h2>
+
+    <p class="section-description">
+        Enter the patient's health information below.
+    </p>
+
+
+    <form action="/predict" method="POST" class="prediction-form">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label>Age</label>
+                <input type="number"
+                       name="age"
+                       placeholder="Enter age"
+                       required>
+            </div>
+
+
+            <div class="form-group">
+                <label>Sex</label>
+
+                <select name="sex" required>
+                    <option value="">Select</option>
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+                <label>Chest Pain Type</label>
+
+                <select name="cp" required>
+
+                    <option value="">Select</option>
+
+                    <option value="0">
+                        Typical Angina
+                    </option>
+
+                    <option value="1">
+                        Atypical Angina
+                    </option>
+
+                    <option value="2">
+                        Non-anginal Pain
+                    </option>
+
+                    <option value="3">
+                        Asymptomatic
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Resting Blood Pressure</label>
+
+                <input type="number"
+                       name="trestbps"
+                       placeholder="mm Hg"
+                       required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Cholesterol</label>
+
+                <input type="number"
+                       name="chol"
+                       placeholder="mg/dl"
+                       required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Fasting Blood Sugar</label>
+
+                <select name="fbs" required>
+
+                    <option value="">Select</option>
+
+                    <option value="1">
+                        Greater than 120 mg/dl
+                    </option>
+
+                    <option value="0">
+                        Less than or equal to 120 mg/dl
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Resting ECG</label>
+
+                <select name="restecg" required>
+
+                    <option value="">Select</option>
+
+                    <option value="0">Normal</option>
+
+                    <option value="1">
+                        ST-T Wave Abnormality
+                    </option>
+
+                    <option value="2">
+                        Left Ventricular Hypertrophy
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Maximum Heart Rate</label>
+
+                <input type="number"
+                       name="thalach"
+                       placeholder="Maximum heart rate"
+                       required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Exercise Induced Angina</label>
+
+                <select name="exang" required>
+
+                    <option value="">Select</option>
+
+                    <option value="1">Yes</option>
+
+                    <option value="0">No</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>ST Depression</label>
+
+                <input type="number"
+                       step="0.1"
+                       name="oldpeak"
+                       placeholder="ST depression"
+                       required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Slope</label>
+
+                <select name="slope" required>
+
+                    <option value="">Select</option>
+
+                    <option value="0">Upsloping</option>
+
+                    <option value="1">Flat</option>
+
+                    <option value="2">Downsloping</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Number of Major Vessels</label>
+
+                <select name="ca" required>
+
+                    <option value="">Select</option>
+
+                    <option value="0">0</option>
+
+                    <option value="1">1</option>
+
+                    <option value="2">2</option>
+
+                    <option value="3">3</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Thalassemia</label>
+
+                <select name="thal" required>
+
+                    <option value="">Select</option>
+
+                    <option value="0">Normal</option>
+
+                    <option value="1">Fixed Defect</option>
+
+                    <option value="2">Reversible Defect</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <button type="submit" class="predict-btn">
+            🔍 Analyze Heart Risk
+        </button>
+
+    </form>
+
+</section>
+
+
+<!-- MEDICAL DISCLAIMER -->
+<section class="disclaimer">
+
+    <h3>⚠️ Medical Disclaimer</h3>
+
+    <p>
+        HeartGuardAI is an educational and research project.
+        It provides a machine-learning based risk estimation
+        and is not a medical diagnosis.
+        Always consult a qualified healthcare professional
+        for medical advice and treatment decisions.
+    </p>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <p>
+        © 2026 HeartGuardAI | AI-Based Heart Disease Risk Prediction
+    </p>
+
+</footer>
+
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
